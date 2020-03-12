@@ -1,0 +1,47 @@
+//var hargaDoge = "https://indodax.com/api/doge_idr/ticker";
+var indoDax = "https://indodax.com/api";
+
+var token = "TOKEN BOT TELEGRAM";
+var url = "https://api.telegram.org/bot" + token;
+var webAppUrl ="https://script.google.com/macros/s/AKfycbzhYZiV1hD9TLn4T5vlbfBzqK183-UMrgHsXeD4sgpM6kTOHX0/exec";
+
+function getUpdates() {
+  var response = UrlFetchApp.fetch(url+"/getUpdates");
+  Logger.log(response.getContentText());
+}
+
+function getMe() {
+  var response = UrlFetchApp.fetch(url+"/getMe");
+  Logger.log(response.getContentText()); 
+}
+
+function setWebhook() {
+  var response = UrlFetchApp.fetch(url+"/setWebhook?url="+ webAppUrl);
+  Logger.log(response.getContentText()); 
+}
+
+function doGet(e) {
+  return HtmlService.createHtmlOutput("hello" +JSON.stringify(e));
+}
+
+/*function cekharga(e) {
+  //var response = UrlFetchApp.fetch(indoDax+"/doge_idr/ticker");
+  //var json = response.getContentText();
+  //var json = UrlFetchApp.fetch(indoDax+"/doge_idr/ticker").getContentText();
+  //var data = JSON.parse(UrlFetchApp.fetch(indoDax+"/doge_idr/ticker").getContentText());
+  Logger.log(JSON.parse(UrlFetchApp.fetch(indoDax+"/doge_idr/ticker").getContentText()).ticker.buy);
+}*/
+
+function sendText(chatid, text) {
+  var urll = "https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+encodeURIComponent(chatid)+"&text="+encodeURIComponent(text);
+  var reply = UrlFetchApp.fetch(urll);
+}
+
+function doPost(e) {
+  var stringJson = e.postData.getDataAsString();
+  var updates = JSON.parse(stringJson);
+  var chatid = updates.message.chat.id;
+  var cek = (JSON.parse(UrlFetchApp.fetch(indoDax+"/doge_idr/ticker").getContentText()).ticker.buy);
+  var hargabeli = "harga beli "+ cek;
+  sendText(chatid,hargabeli);
+}
