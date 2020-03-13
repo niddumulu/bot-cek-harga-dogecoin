@@ -1,7 +1,7 @@
 //Kode 1.2 Cek Balance Bot
 
 var balance ="https://dogechain.info/chain/Dogecoin/q/addressbalance/D8Q57swrKKki2fEURgFvQoKfdnDz5sbSG3"
-var token = "925442602:AAFbR6pyRuTlrmOjfXAP52tq6w7UMSq4QAU";
+var token = "TOKEN BOT";
 var url = "https://api.telegram.org/bot" + token;
 var webAppUrl ="https://script.google.com/macros/s/AKfycbwlMl_e58OPH6unLmFd06YB3TO08Txh1KTKrPKfzIn-pBvCNdM/exec";
                 
