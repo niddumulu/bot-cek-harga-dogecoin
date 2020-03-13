@@ -1,0 +1,28 @@
+//Kode 1.2 Cek Balance Bot
+
+var balance ="https://dogechain.info/chain/Dogecoin/q/addressbalance/D8Q57swrKKki2fEURgFvQoKfdnDz5sbSG3"
+var token = "925442602:AAFbR6pyRuTlrmOjfXAP52tq6w7UMSq4QAU";
+var url = "https://api.telegram.org/bot" + token;
+var webAppUrl ="https://script.google.com/macros/s/AKfycbwlMl_e58OPH6unLmFd06YB3TO08Txh1KTKrPKfzIn-pBvCNdM/exec";
+                
+function setWebhook() {
+  var response = UrlFetchApp.fetch(url+"/setWebhook?url="+ webAppUrl);
+  Logger.log(response.getContentText()); 
+}
+
+function doGet(e) {
+  return HtmlService.createHtmlOutput("hello" +JSON.stringify(e));
+}
+
+function sendText(chatid, text) {
+  var urll = "https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+encodeURIComponent(chatid)+"&text="+encodeURIComponent(text);
+  var reply = UrlFetchApp.fetch(urll);
+}
+
+function doPost(e) {
+  var stringJson = e.postData.getDataAsString();
+  var updates = JSON.parse(stringJson);
+  var chatid = updates.message.chat.id;
+  var bal = UrlFetchApp.fetch(balance);
+  sendText(chatid,bal);
+}
