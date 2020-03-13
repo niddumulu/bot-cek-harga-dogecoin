@@ -1,3 +1,5 @@
+//Kode 1.0 Cek harga doge
+
 //var hargaDoge = "https://indodax.com/api/doge_idr/ticker";
 var indoDax = "https://indodax.com/api";
 
