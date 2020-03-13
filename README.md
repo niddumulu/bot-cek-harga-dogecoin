@@ -1,2 +1,2 @@
-# bot-cek-harga-dogecoin
-bot cek harga doge dari telegram dengan menggunakan google script
+# bot-doge-idr
+bot untuk jual beli doge idr dari telegram dengan menggunakan google script
