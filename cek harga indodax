@@ -43,7 +43,10 @@ function doPost(e) {
   var stringJson = e.postData.getDataAsString();
   var updates = JSON.parse(stringJson);
   var chatid = updates.message.chat.id;
-  var cek = (JSON.parse(UrlFetchApp.fetch(indoDax+"/doge_idr/ticker").getContentText()).ticker.buy);
-  var hargabeli = "harga beli "+ cek;
-  sendText(chatid,hargabeli);
+  var buy = (JSON.parse(UrlFetchApp.fetch(indoDax+"/doge_idr/ticker").getContentText()).ticker.buy);
+  var sell = (JSON.parse(UrlFetchApp.fetch(indoDax+"/doge_idr/ticker").getContentText()).ticker.sell);
+  var hargajual = "Sell "+ sell;
+  var hargabeli = "Buy "+ buy;
+  var jubel = hargajual + " "+ hargabeli;
+  sendText(chatid,jubel);
 }
